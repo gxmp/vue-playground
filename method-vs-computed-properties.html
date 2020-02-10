@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <input type="text" v-model="price">
+  <div>Tax {{ moneyFormat(tax) }}</div>
+  <div>Total {{ moneyFormat(total) }}</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el:"#app",
+
+    data: {
+      price: 100,
+      percentage: 0.1,
+    },
+
+    methods: {
+      moneyFormat: function (price) {
+        return '$' + price + '.00';
+      },
+    },
+
+    computed: {
+      tax: function () {
+        return this.price * this.percentage;
+      },
+
+      total: function () {
+        return  parseInt(this.price) + this.tax;
+      },
+      totalFormatted: function () {
+        return '$' + this.total;
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

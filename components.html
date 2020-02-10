@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <accordion v-for="item in items" v-bind:item="item"></accordion>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+  Vue.component('accordion', {
+    props: ['item'],
+
+    template: `
+      <div>
+        <p>{{ item.title }}</p>
+        <p @click = "toggle = ! toggle">Details</p>
+        <p v-if="toggle">{{ item.description}}</p>
+      </div>
+    `,
+
+    data: function () {
+      return {
+        toggle:false,
+      }
+    }
+  })
+
+  new Vue({
+    el:'#app',
+
+    data:{
+      items: [
+        {title:'title1', description:'description for tab 1'},
+        {title:'title2', description:'description for tab 2'},
+        {title:'title3', description:'description for tab 3'},
+      ]
+    },
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+  <div id="app">
+<!--we add the item dynamically using v-for-->
+    <ul v-bind:title="title">Todo
+      <li v-for="todo in items" v-bind:title="todo">{{ todo }}</li>
+    </ul>
+
+
+<!--    the item that is being fetch is came from the data object below-->
+    <input type="text" v-model="item">
+    <button @click="items.push(item)">Add item</button>
+    <button @click="items.pop(item)">Remove item</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+
+      data: {
+        title:'this is the title',
+        item: '',
+        items: [
+          'item1',
+          'item2',
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
